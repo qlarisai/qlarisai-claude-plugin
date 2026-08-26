@@ -1,0 +1,12 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "qlaris",
+  "description": "Qlaris AI integration. Runs synthetic market research — surveys, UX tests, interviews, and discovery — on digital-twin panels, and keeps claims, decisions, and personas in a shared workspace.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Benjamin Eckart",
+    "email": "ben@lyxforge.com"
+  },
+  "homepage": "https://app.qlaris.ai",
+  "keywords": ["qlaris", "mcp", "market-research", "surveys", "user-testing", "personas"]
+}
