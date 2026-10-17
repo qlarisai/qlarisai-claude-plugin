@@ -2,7 +2,7 @@
   "mcpServers": {
     "qlaris": {
       "type": "http",
-      "url": "https://app.qlaris.ai/api/mcp"
+      "url": "https://app.qlaris.ai/api/mcp/claude"
     }
   }
 }

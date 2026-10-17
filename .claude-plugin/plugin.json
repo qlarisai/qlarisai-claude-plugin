@@ -1,12 +1,24 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "qlaris",
-  "description": "Qlaris AI integration. Runs synthetic market research — surveys, UX tests, interviews, and discovery — on digital-twin panels, and keeps claims, decisions, and personas in a shared workspace.",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Synthetic market research from Claude: draft, check, run and read surveys, user tests of websites and prototypes, 1:1 interview studies and focus groups on digital-twin panels for the US and 39 European countries, with your Qlaris account. Bundles the Qlaris connector and the help-with-qlaris skill.",
   "author": {
-    "name": "Benjamin Eckart",
-    "email": "ben@lyxforge.com"
+    "name": "Qlaris",
+    "email": "ben@qlaris.ai",
+    "url": "https://qlaris.ai"
   },
-  "homepage": "https://app.qlaris.ai",
-  "keywords": ["qlaris", "mcp", "market-research", "surveys", "user-testing", "personas"]
+  "homepage": "https://qlaris.ai/docs/claude",
+  "repository": "https://github.com/qlarisai/qlarisai-claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "qlaris",
+    "mcp",
+    "market-research",
+    "surveys",
+    "user-research",
+    "interviews",
+    "user-testing",
+    "personas"
+  ]
 }
