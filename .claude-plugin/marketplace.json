@@ -12,7 +12,7 @@
       "source": "./",
       "category": "productivity",
       "description": "Synthetic market research from Claude: draft, check, run and read surveys, user tests of websites and prototypes, 1:1 interview studies and focus groups on digital-twin panels for the US and 39 European countries, with your Qlaris account. Bundles the Qlaris connector and the help-with-qlaris skill.",
-      "homepage": "https://qlaris.ai/docs/claude"
+      "homepage": "https://qlaris.ai"
     }
   ]
 }
