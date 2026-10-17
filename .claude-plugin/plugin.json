@@ -9,6 +9,11 @@
     "url": "https://qlaris.ai"
   },
   "homepage": "https://qlaris.ai/docs/claude",
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://qlaris.ai/docs/claude",
+  "supportUrl": "https://qlaris.ai/contact",
+  "privacyPolicyUrl": "https://qlaris.ai/privacy",
+  "termsOfServiceUrl": "https://qlaris.ai/terms",
   "repository": "https://github.com/qlarisai/qlarisai-claude-plugin",
   "license": "MIT",
   "keywords": [

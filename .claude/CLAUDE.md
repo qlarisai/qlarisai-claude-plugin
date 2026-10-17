@@ -13,7 +13,7 @@ not here.
 
 **The bundle files are generated; do not edit them here.** Their source is the `qlaris-app`
 repository: `integrations/claude-plugin/` (plugin.json, marketplace.json, mcp.json, README.md,
-LICENSE) and the skill text through `scripts/claude-plugin/build-plugin.ts`. From a `qlaris-app`
+LICENSE, assets/icon.png) and the skill text through `scripts/claude-plugin/build-plugin.ts`. From a `qlaris-app`
 checkout:
 
 ```bash
@@ -21,7 +21,9 @@ checkout:
 ./node_modules/.bin/tsx scripts/claude-plugin/validate-plugin.ts --release <this clone>
 ```
 
-The build replaces exactly the bundle files and keeps this file, `build.sh` and `.gitignore`.
+The build replaces exactly the bundle files and keeps this file (`.claude/CLAUDE.md`) and `.gitignore`.
+Maintainer files stay out of the repository root: the root is the plugin root, and the directory
+portal and `claude plugin validate` read every file there as part of the plugin.
 
 | Path | Role |
 | --- | --- |
@@ -30,6 +32,7 @@ The build replaces exactly the bundle files and keeps this file, `build.sh` and 
 | `.mcp.json` | The `qlaris` HTTP server at `/api/mcp/claude`. Auto-discovered at the plugin root, not referenced from `plugin.json`. |
 | `skills/help-with-qlaris/SKILL.md` | The "with qlaris" routing skill, rewritten for the Claude profile by the build. |
 | `README.md`, `LICENSE` | Public docs (install lines, data disclosure) and MIT. |
+| `assets/icon.png` | The 512 px directory icon, named by `plugin.json`'s `icon`. `plugin.json` also carries the four listing URLs (docs, support, privacy, terms) the directory reads. |
 
 ## Verify
 
@@ -37,13 +40,12 @@ The build replaces exactly the bundle files and keeps this file, `build.sh` and 
 on a copy holding exactly the bundle files, and `claude plugin validate .` here. By hand:
 
 ```bash
-claude plugin validate .            # marketplace + plugin; one known warning, see below
+claude plugin validate .            # marketplace + plugin; expect no warning
 ```
 
-The repository root is the plugin root (marketplace source `./`), so the validator warns once:
-`CLAUDE.md` at the plugin root is not loaded as plugin context. Expected, not a defect: this file
-is for maintainers. `--strict` turns that warning into a failure, which is why the strict run goes
-over a copy of the bundle files. Any *other* warning is a real finding.
+The repository root is the plugin root (marketplace source `./`). This file lives in `.claude/`, so
+the validator's "CLAUDE.md at the plugin root is not loaded" warning does not fire; any warning is
+a real finding.
 
 Validation never dials the server; confirm connection changes by installing and running `/mcp`.
 
@@ -51,8 +53,13 @@ Validation never dials the server; confirm connection changes by installing and 
 
 Push only after `/api/mcp/claude` answers on prod: an installed plugin updates to whatever `main`
 holds. Existing users move from `/api/mcp` to `/api/mcp/claude` with the update and sign in once
-more through `/mcp`. After committing, `./build.sh` writes `dist/qlaris-<version>.zip` from the
-committed tree (`dist/` is not committed).
+more through `/mcp`. After committing, write the release zip from the committed tree (`dist/` is not
+committed):
+
+```bash
+v=$(sed -n 's/.*"version": "\(.*\)".*/\1/p' .claude-plugin/plugin.json)
+mkdir -p dist && git archive --format=zip -o "dist/qlaris-$v.zip" HEAD && shasum -a 256 "dist/qlaris-$v.zip"
+```
 
 ## MCP constraints
 
